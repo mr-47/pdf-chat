@@ -1,0 +1,11 @@
+# Streamlit's development file watcher walks sys.modules and calls
+# hasattr(module, "__path__") on every entry. transformers uses lazy modules,
+# so that check really imports each submodule, and ~100 of its vision modules
+# import torchvision at module level without a guard. The watcher swallows
+# the resulting ImportError and logs a multi-line traceback on every run.
+#
+# "none" turns that scan off. Hot reload is not needed for a local app that is
+# restarted to pick up dependency or model changes anyway, and the scan was
+# also importing thousands of unrelated modules on every startup.
+[server]
+fileWatcherType = "none"

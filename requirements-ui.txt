@@ -1,0 +1,9 @@
+# Optional web UI dependencies, needed only by app.py.
+# Installs the core requirements as well, so this works as a one-shot:
+#   pip install -r requirements-ui.txt
+# Skipping streamlit saves about 20 packages and 300MB (pyarrow, pandas,
+# pydeck, uvicorn and friends), which is most of the environment for a
+# terminal-only user.
+
+-r requirements.txt
+streamlit

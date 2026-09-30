@@ -1,0 +1,18 @@
+# Core dependencies, needed by cli.py.
+# For the web UI also install requirements-ui.txt (or just use ./run.sh).
+
+# PyTorch is deliberately not listed. Installing it from PyPI pulls the CUDA
+# build, roughly 2.5GB of nvidia-* wheels we would never use. run.sh installs
+# the CPU-only wheel from https://download.pytorch.org/whl/cpu first, which
+# satisfies the sentence-transformers requirement without CUDA.
+
+# Do not add `langchain` or `langchain-community`. Nothing here imports them.
+# The meta-package pulled in langgraph, an agent framework that is not used,
+# and langchain-community pulled in langchain-classic, langsmith, sqlalchemy,
+# aiohttp and httpx, all for two classes that are a few lines each here.
+# Only the text splitter is still taken from LangChain.
+
+langchain-text-splitters
+sentence-transformers
+pypdf
+numpy
